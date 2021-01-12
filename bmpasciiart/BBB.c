@@ -2,7 +2,7 @@
 #include <stdio.h>    // fopen, fread, fseek, fprintf, fclose 함수가 선언된 헤더 파일
 #include <stdlib.h>   // malloc, free 함수가 선언된 헤더 파일
 
-//https://people.math.sc.edu/Burkardt/data/bmp/bmp.html bmp url
+//https://people.math.sc.edu/Burkardt/data/bmp/bmp.html bmp image url
 
 #pragma pack(push, 1)                // 구조체를 1바이트 크기로 정렬
 
