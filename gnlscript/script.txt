@@ -1,0 +1,499 @@
+hi today we will study elmo which is
+
+contextualized word embedding are you
+
+ready let's get it started
+
+i think knowing the history before elmo
+
+and
+
+after elmo is pretty interesting and it
+
+can give you easy
+
+understanding why elmo is so great okay
+
+before elmo came out to the world nlp
+
+was so happy with the pre-trained world
+
+embedding such as
+
+wordpress or glove here these worldly
+
+meetings are numeric representation of
+
+words where the numbers have the
+
+semantic meaning of the words which are
+
+trained by
+
+tremendous data each pre-changed wording
+
+meeting helps a lot on the nlp task
+
+who even doesn't have enough data for
+
+training their nlp
+
+model let me give example suppose there
+
+are john
+
+and james who are building their
+
+sentence classification model with
+
+limited trained data
+
+john used pre-trained work embedding
+
+while james didn't
+
+eventually we will see john's motion on
+
+the model classifies well
+
+on neural user data since john's model
+
+knows much more words while the james
+
+model
+
+mostly can't handle the unseen words
+
+which
+
+were not in the limited train data also
+
+john's model will quickly finish train
+
+since his
+
+embedding layer is almost perfect from
+
+the beginning of the training
+
+while the james model embedding layer
+
+will need much
+
+more epoch to be trained on so we think
+
+pre-trained working bedding are awesome
+
+yes it is awesome but it is not perfect
+
+first the pre-trained working building
+
+only has one pneumatic representation
+
+in other words one word will be located
+
+only one place in vector space
+
+why is this problem think about the word
+
+present
+
+it sometimes means gift sometimes means
+
+now
+
+depends on each context it is impossible
+
+for pre-trained word embedding to put
+
+words dynamically in vector space
+
+depending on the context
+
+so now our savior animal comes out ammo
+
+is a function which takes
+
+context as each input and outputs
+
+embedding
+
+so the elmo can put present near gift
+
+when the input is here is your birthday
+
+present
+
+and elmo will give another embedding for
+
+present when the sentence is
+
+live in present not past human language
+
+is more complex than you think
+
+let's suppose you are building a
+
+speaking motion which is speech on the
+
+given text
+
+there is an example that the same word
+
+has different pronouns depends on a
+
+context
+
+here we have a sentence example i read a
+
+book
+
+since it is present tense the embedding
+
+is supposed to be similar location to
+
+noun
+
+the read supposed to be pronounced as
+
+read here
+
+similarly when the text is i read
+
+about esd the embedding for read
+
+supposed to be similar to the opacity
+
+here and the speaking version supports
+
+the pronouns this token as
+
+red while pre-trained word embedding has
+
+one vector for one word the mo can
+
+provide
+
+embedding dynamically considering the
+
+given
+
+context now i think we understand the
+
+most benefit of
+
+elmo let's dip dive into this research
+
+paper
+
+first i highlight that the ammo is a
+
+function providing contextualized
+
+embedding
+
+with an example at the right side here
+
+you can see the element as a function
+
+which takes
+
+context as input and outputting
+
+different embedding
+
+for the word present since the input
+
+context
+
+are different the magic behind is that
+
+the elmo uses
+
+all internal stage of a bi-directional
+
+lm
+
+you can see the biolan is nothing but
+
+just concatenated for the lamp
+
+and backward lm you know one of most
+
+benefit of using lamp for
+
+nlp model is you don't need additional
+
+label
+
+but just need a very large data set to
+
+predict next word or
+
+previous word in given data when elmo is
+
+being trained
+
+**the for the name is trained to predict**
+
+the next word with given
+
+previous words and the backward alarm is
+
+trained to predict the previous world
+
+with given future words
+
+one of the interesting point is the elmo
+
+utilizes
+
+all internal states while historical
+
+state of art used only
+
+last layer output for contextualized
+
+vector
+
+elmo researchers found that the higher
+
+level ls stem stage
+
+capture context dependent aspect of
+
+world
+
+and the lower level stage model aspect
+
+of the syntax
+
+why don't we have a look how the fourth
+
+and then be trained
+
+when sentence is given the first word
+
+will be converted into
+
+character embedding and the keratin
+
+building goes into first
+
+ls stem cell there are two main reasons
+
+why they use
+
+character embedding from the cnn first
+
+the initial layers embedding supposed to
+
+be context
+
+independent second they wanted to
+
+compare the evaluation score with
+
+pre-trained world embedding
+
+so for the fair game they didn't use the
+
+pre-trained world
+
+embedding in mmo while the initial layer
+
+embedding is context
+
+independently embedding the later hidden
+
+layer output are context
+
+dependent embeddings the first lstm
+
+output
+
+has a residual connection with character
+
+embedding
+
+while the research paper didn't specify
+
+why they use
+
+registered connection but usually the
+
+legitimate connection
+
+helps in two ways first the later layers
+
+can learn
+
+from the initial layers feature well
+
+second
+
+while doing training with back
+
+propagation the residual connection can
+
+prevent the gradient vanishing issue
+
+the ln will be trained to predict next
+
+word from previous and current words
+
+importantly in this for their name most
+
+likely the embedding for read will be
+
+present tense read since there is no
+
+signal from previous words that this
+
+sentence is past the tense
+
+that is why the elmo uses also backward
+
+alarm to generate the world embedding
+
+more precisely with information from
+
+future world
+
+like white foreign will be trained to
+
+predict
+
+next world by using previous tokens
+
+and there is backward lm it just works
+
+same as
+
+for the lm except it goes reversely
+
+so backward lm will be trained to
+
+predict the previous word from
+
+future world likewise
+
+like i said from previous slide one of
+
+the benefit of backward name is this
+
+since the lm knows yesterday in the
+
+sentence
+
+backward and lane can recognize this
+
+read
+
+is the past tense
+
+and finally backward alarm hit the first
+
+word
+
+so recap of this by lam the initial
+
+embeddings are
+
+character embedding
+
+there are registered connections between
+
+lstm layers
+
+and train the folder lamp to predict the
+
+future world and train the backward lamp
+
+to predict
+
+previous words from large data set
+
+it is time to know how elmo generates
+
+context dependent word embedding
+
+let's check it out with the word red
+
+here
+
+we have for the lamp and backward and
+
+left internal stage just like this
+
+in order to combine features from for
+
+the lm and backward lm
+
+elmo concatenates vectors from each
+
+internal stage
+
+then multiply normalized weight on these
+
+concatenated vectors
+
+the normalized weights are set and
+
+optimized during training
+
+then summing up all results from all
+
+layers
+
+according to the research paper higher
+
+level at the same stage
+
+capture the context dependent aspect of
+
+word meaning
+
+while the lower level stage model aspect
+
+of syntax
+
+historically researchers only use the
+
+last layer for contextualized embedding
+
+elmo proved that the combining all
+
+layers with normalized weight could
+
+improve the contextualized embedding
+
+lastly multiply gamma which is of the
+
+practical importance to aid the
+
+optimization process
+
+according to the research paper the
+
+gamma is especially important
+
+when just using the last layer for
+
+contextualized embedding
+
+all information are summarized from the
+
+deep contextualized world representation
+
+research paper
+
+i highly recommend you to read this
+
+paper thank you for watching
+
+until the end of this video i will see
+
+you on the next
+
+video
